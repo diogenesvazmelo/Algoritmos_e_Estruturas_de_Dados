@@ -7,31 +7,20 @@
 
 #define V 4
 
-//void dijkstra(int graph[V][V], int src);
 
 int dijkstra(int graph[V][V], int src, int destino_index);
 
 typedef struct{
-	char cidade1[21];// = (char*) malloc(21*sizeof(char));
-	char cidade2[21];// = (char*) malloc(21*sizeof(char));
+	char cidade1[21];
+	char cidade2[21];
 	int distancia;
 } Rota;
 
-//int ** Aloca_matriz(int lin, int col){
-
-
-
-
-//}
-
 
 int verifica_se_esta_no_vetor(char vetor[10][21], char palavra[], int tamanho_do_vetor){
-    //int tamanho_do_vetor = (int)(sizeof(vetor) / sizeof(vetor[0]));
-    printf("        palavra: %s\n", palavra); /// APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR
-    //int verificador = 0;
+
     for (int i = 0; i < tamanho_do_vetor; i++){
         if (strcmp(palavra, vetor[i]) == 0){
-            //verificador
             return 1;
         }
     }
@@ -66,10 +55,8 @@ void impime_matriz(int matriz[V][V], int tamanho_linha, int tamanho_coluna){
 
 int main(int argc, char *argv[]){
 	printf("Digite o nome do arquivo de entrada: ");
-	//char *nome_do_arquivo;
 	char nome_do_arquivo[100];
 	scanf("%s", &nome_do_arquivo);
-	printf("\n\n");
 
 	FILE *arquivo;
  	arquivo = fopen(nome_do_arquivo, "r");
@@ -78,54 +65,32 @@ int main(int argc, char *argv[]){
 		return(1);
 	}
 
-
 	int arestas = 0;
 
 	fscanf(arquivo, "%d", &arestas);
-	//printf("arestas: %d", arestas);
 
 	Rota *rotas_ptr = (Rota*) malloc(arestas * sizeof(Rota));
 
-	char *test = (char*) malloc(21*sizeof(char));
-	strcpy(test, "testingonly");
-
-	free(test);
 
 	for(int i = 0; i < arestas; i++){
-//		fscanf(arquivo, "%s", (rotas_ptr + i)->cidade1);
-//		fscanf(arquivo, "%s", (rotas_ptr + i)->cidade2);
-//		fscanf(arquivo, "%d", &(rotas_ptr + 1)->distancia);
-//
-//
-//		printf("cidade1: %s \n", (rotas_ptr + i)->cidade1);
-
-
 
         fscanf(arquivo, "%s", (rotas_ptr + i)->cidade1);
 		fscanf(arquivo, "%s", (rotas_ptr + i)->cidade2);
 		fscanf(arquivo, "%d", &(rotas_ptr + i)->distancia);
 
-//
-		printf("cidade1: %s \n", (rotas_ptr + i)->cidade1); /// APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR
 	}
 
 	int qt_cidades = 0;
     char cidades[10][21];
 
     for(int i = 0; i < arestas; i++){
-        printf("cidade1_novamente: %s \n", (rotas_ptr + i)->cidade1); /// APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR
-
-
         char cid[21];
 
         strcpy(cid, (rotas_ptr + i)->cidade1);
-        //printf("cid: %s \n", cid);
         int v = verifica_se_esta_no_vetor(cidades, cid, arestas);
-        printf("v: %d \n", v); /// APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR
         if (v == 0){
             strcpy(cidades[qt_cidades], cid);
             qt_cidades++;
-            printf("-----Cidade: %s \n", cidades[qt_cidades-1]); /// APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR
         }
 	}
 
@@ -135,8 +100,6 @@ int main(int argc, char *argv[]){
 
 	fscanf(arquivo, "%s", origem);
 	fscanf(arquivo, "%s", destino);
-
-	//printf("destino: %s\n", destino); /// APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR
 
 
 
@@ -157,7 +120,6 @@ int main(int argc, char *argv[]){
             strcpy(coluna, cidades[j]);
 
             int dist = procura_caminhos_entre_cidades(rotas_ptr, linha, coluna, arestas);
-            printf("dist: %d", dist);     /// APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR
 
             if (grafo[i][j] < dist)
                 grafo[i][j] = dist;
@@ -167,8 +129,6 @@ int main(int argc, char *argv[]){
 
         }
     }
-
-    impime_matriz(grafo, qt_cidades, qt_cidades); /// APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR APAGAR
 
     int origem_index = -1;
     int destino_index = -1;
@@ -189,11 +149,10 @@ int main(int argc, char *argv[]){
         return 3;
     }
 
-    #define V qt_cidades
+    //#define V qt_cidades
     int resposta = dijkstra(grafo, origem_index, destino_index);
-    printf("A resposta e: %d", resposta);
+    printf("Distancia total: %d", resposta);
 
-    //main2();
 	fclose(arquivo);
 	return 0;
 }
@@ -206,11 +165,11 @@ int main(int argc, char *argv[]){
 // A C++ program for Dijkstra's single source shortest path algorithm.
 // The program is for adjacency matrix representation of the graph
 
-///#include <limits.h>
-///#include <stdio.h>
+//#include <limits.h>
+//#include <stdio.h>
 
 // Number of vertices in the graph
-#define V 4
+//#define V 4
 
 // A utility function to find the vertex with minimum distance value, from
 // the set of vertices not yet included in shortest path tree
